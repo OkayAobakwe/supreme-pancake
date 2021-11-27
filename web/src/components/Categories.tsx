@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
-import { Box, Heading, Flex } from "@chakra-ui/react"
+import { Box, Heading, Flex, LinkOverlay, LinkBox } from "@chakra-ui/react"
+import NextLink from "next/link"
 
 import { api_url } from "../constants/api_url"
 
@@ -24,16 +25,25 @@ export const Categories = () => {
     <Flex 
       flexDirection="column"
       alignItems="center"
+      h="100%"
     >
-      <Box
-        p={5}
-        mb={5}
-        my="auto"
-      >
-        {state?.data?.meals?.map((meal) => (
-          <Heading key={meal.strCategory}>{meal.strCategory}</Heading>
-        ))}
-      </Box>
+      {state?.data?.meals?.map((meal) => (
+        <NextLink 
+          href="/category/[category]" 
+          as={`/category/${meal.strCategory}`}
+          key={meal.strCategory}
+        >
+          <LinkBox>
+            <LinkOverlay>
+              <Box
+                m="auto"
+              >
+                <Heading>{meal.strCategory}</Heading>
+              </Box>
+            </LinkOverlay>
+          </LinkBox>
+        </NextLink>
+      ))}
     </Flex>
   )
 }
