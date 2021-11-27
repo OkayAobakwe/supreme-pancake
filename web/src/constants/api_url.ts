@@ -1,0 +1,1 @@
+export const api_url = "https://www.themealdb.com/api/json/v1/"
