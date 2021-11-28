@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import axios from "axios"
-import { Heading, Flex, Center, Link } from "@chakra-ui/react"
+import { Heading, Flex, Center, Link, LinkBox, LinkOverlay } from "@chakra-ui/react"
 import NextLink from "next/link"
 
 import CategoryThumb from "../../components/CategoryThumnail"
@@ -39,10 +39,9 @@ const Category = () => {
       <Flex flexWrap="wrap" justifyContent="center">
         {state?.data?.meals?.map((meal) => (
           <CategoryThumb  
-            key={meal?.idMeal}
             image={meal?.strMealThumb}
             name={meal?.strMeal}
-            
+            id={meal?.idMeal}
           />
         ))}
       </Flex>

@@ -33,7 +33,7 @@ export const Categories = () => {
           as={`/category/${meal.strCategory}`}
           key={meal.strCategory}
         >
-          <LinkBox>
+          <LinkBox as="article">
             <LinkOverlay>
               <Box
                 m="auto"
