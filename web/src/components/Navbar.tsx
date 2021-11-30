@@ -27,7 +27,7 @@ const Navbar = ({}) => {
           <NextLink href="/">
             <Link>
               <Heading as="h1" size="lg" letterSpacing={"tighter"}>
-                food stuff
+                supreme pancake
               </Heading>
             </Link>
           </NextLink>
