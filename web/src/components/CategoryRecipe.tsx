@@ -1,5 +1,13 @@
 import React, { FC } from "react"
-import { Heading, Container, Stack, Text, Image } from "@chakra-ui/react"
+import { 
+  Heading, 
+  Container, 
+  Stack, 
+  Text, 
+  Image, 
+  Center,
+  Flex
+} from "@chakra-ui/react"
 
 import { RecipeProps } from "../types/index"
 
@@ -10,11 +18,17 @@ export const CategoryRecipe: FC<RecipeProps> = (props: RecipeProps) => {
       <Stack>
         <Heading>{props.category}</Heading>
         <Image src={props.thumb}/>
-        <Text>{props.name}</Text>
+        <Center>
+          <Heading as="h3">{props.name}</Heading>
+        </Center>
         <Stack>
-          {props.ingredients?.map((i) => (
-            <Text key={i.ingredient}>{i.ingredient}</Text>
+          <Flex flexDirection="column" wrap="nowrap" >
+            <Text textDecoration="underline">Ingredients</Text>
+          {props.ingredients?.map((i, index: number) => (
+            <Text key={index} mr={1}>{index + 1} {" "} {i}</Text>
           ))}
+          </Flex>
+          <Text textDecoration="underline">Instructions</Text>
           <Text>{props?.intructions}</Text>
         </Stack>
       </Stack>
