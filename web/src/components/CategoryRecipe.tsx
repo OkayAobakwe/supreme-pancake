@@ -6,7 +6,7 @@ import { RecipeProps } from "../types/index"
 export const CategoryRecipe: FC<RecipeProps> = (props: RecipeProps) => {
 
   return (
-    <Container>
+    <Container mt={14}>
       <Stack>
         <Heading>{props.category}</Heading>
         <Image src={props.thumb}/>

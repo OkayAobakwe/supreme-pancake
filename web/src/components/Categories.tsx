@@ -20,30 +20,32 @@ export const Categories = () => {
       .then((res) => setState({...state, data: res?.data}))
       .catch((err) => console.log("err", err))
   }, [])
-  console.log("data", state?.data)
+
   return(
     <Flex 
       flexDirection="column"
       alignItems="center"
       h="100%"
     >
-      {state?.data?.meals?.map((meal) => (
-        <NextLink 
-          href="/category/[category]" 
-          as={`/category/${meal.strCategory}`}
-          key={meal.strCategory}
-        >
-          <LinkBox as="article">
-            <LinkOverlay>
-              <Box
-                m="auto"
-              >
-                <Heading>{meal.strCategory}</Heading>
-              </Box>
-            </LinkOverlay>
-          </LinkBox>
-        </NextLink>
-      ))}
+      <Box mt={14}>
+        {state?.data?.meals?.map((meal) => (
+          <NextLink 
+            href="/category/[category]" 
+            as={`/category/${meal.strCategory}`}
+            key={meal.strCategory}
+          >
+            <LinkBox as="article">
+              <LinkOverlay>
+                <Box
+                  m="auto"
+                >
+                  <Heading>{meal.strCategory}</Heading>
+                </Box>
+              </LinkOverlay>
+            </LinkBox>
+          </NextLink>
+        ))}
+      </Box>
     </Flex>
   )
 }

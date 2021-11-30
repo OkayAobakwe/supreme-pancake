@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import axios from "axios"
-import { Heading, Flex, Center, Link, LinkBox, LinkOverlay } from "@chakra-ui/react"
-import NextLink from "next/link"
+import { Heading, Flex, Center  } from "@chakra-ui/react"
 
 import CategoryThumb from "../../components/CategoryThumnail"
+import Navbar from "../../components/Navbar"
 
 import {api_url} from "../../constants/api_url"
 
@@ -28,12 +28,8 @@ const Category = () => {
   console.log(state?.data)
   return (
     <>
-      <NextLink href="/">
-        <Link>
-          <Heading ml={3}>home</Heading>
-        </Link>
-      </NextLink>
-      <Center>
+      <Navbar />
+      <Center mt={14}>
         <Heading as="h2" mx="auto">{router?.query?.category}</Heading>
       </Center>
       <Flex flexWrap="wrap" justifyContent="center">

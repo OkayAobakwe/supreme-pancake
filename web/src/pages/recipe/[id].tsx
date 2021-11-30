@@ -5,6 +5,7 @@ import axios from "axios"
 import { api_url } from "../../constants/api_url"
 import { RecipeProps } from "../../types"
 import { CategoryRecipe } from "../../components/CategoryRecipe"
+import Navbar from "../../components/Navbar"
 
 const Recipe = ({}) => {
   const router = useRouter()
@@ -32,16 +33,19 @@ const Recipe = ({}) => {
   }, [])
   console.log("data", state.data)
   return(
-    <CategoryRecipe 
-      category={state?.category}
-      ingredients={state?.data?.ingredients}
-      measures={state?.data?.measures}
-      name={state?.meal}
-      thumb={state?.thumbnail}
-      yt={state?.data?.yt}
-      origin={state?.data?.origin}
-      intructions={state?.instructions}
-    />
+    <>
+      <Navbar />
+      <CategoryRecipe 
+        category={state?.category}
+        ingredients={state?.data?.ingredients}
+        measures={state?.data?.measures}
+        name={state?.meal}
+        thumb={state?.thumbnail}
+        yt={state?.data?.yt}
+        origin={state?.data?.origin}
+        intructions={state?.instructions}
+      />
+  </>
   )
 }
 
