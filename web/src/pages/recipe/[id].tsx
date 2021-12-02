@@ -16,11 +16,20 @@ const Recipe = ({}) => {
     "thumbnail": "",
     "category": "",
     "instructions": "",
+    "measures": [] as any
   })
   const ingredientsArr = (obj: {""}) => {
     var r = []
     for( var key in obj){
-      if(key.includes("strIngredient") && obj[key] !== "")
+      if(key.includes("strIngredient") && obj[key] !== "" && obj[key] !== null)
+        r.push(obj[key])
+    }
+    return r
+  }
+  const measuresArr = (obj: {""}) => {
+    var r = []
+    for( var key in obj){
+      if(key.includes("strMeasure") && obj[key] !== "" && obj[key] !== null)
         r.push(obj[key])
     }
     return r
@@ -28,25 +37,25 @@ const Recipe = ({}) => {
   useEffect(() => {
     axios.get(`${api_url}1/lookup.php?i=${router.query.id}`)
       .then((res) => {
-        setState({...state, data: res?.data?.meals[0]})
         setState({
           ...state, 
           meal: res?.data?.meals[0].strMeal as string,
           thumbnail: res?.data?.meals[0]?.strMealThumb as string,
           category: res?.data?.meals[0]?.strCategory,
           instructions: res?.data?.meals[0]?.strInstructions,
-          ingredients: ingredientsArr(res?.data?.meals[0])
+          ingredients: ingredientsArr(res?.data?.meals[0]),
+          measures: measuresArr(res?.data?.meals[0])
         })
       })
       .catch((err) => console.log("err", err))
   }, [])
-  console.log("data, state", state.data, state)
+  console.log("state", state)
   return(
     <>
       <Navbar />
       <CategoryRecipe 
         category={state?.category}
-        measures={state?.data?.measures}
+        measures={state?.measures}
         name={state?.meal}
         thumb={state?.thumbnail}
         yt={state?.data?.yt}
