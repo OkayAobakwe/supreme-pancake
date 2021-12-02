@@ -12,7 +12,7 @@ import {
 import { RecipeProps } from "../types/index"
 
 export const CategoryRecipe: FC<RecipeProps> = (props: RecipeProps) => {
-
+  console.log("measures", props.measures)
   return (
     <Container mt={14}>
       <Stack>
@@ -23,10 +23,20 @@ export const CategoryRecipe: FC<RecipeProps> = (props: RecipeProps) => {
         </Center>
         <Stack>
           <Flex flexDirection="column" wrap="nowrap" >
-            <Text textDecoration="underline">Ingredients</Text>
-          {props.ingredients?.map((i, index: number) => (
-            <Text key={index} mr={1}>{index + 1} {" "} {i}</Text>
-          ))}
+            <Flex>
+              <Container>
+                <Text textDecoration="underline">Ingredients</Text>
+                {props.ingredients?.map((i, index: number) => (
+                  <Text key={index} mr={1}>{index + 1} {" "} {i}</Text>
+                ))}
+              </Container>
+              <Container>
+              <Text textDecoration="underline">Measurements</Text>
+                {props.measures?.map((m, index: number) => (
+                  <Text key={index}>{m}</Text>
+                ))}
+              </Container>
+            </Flex>
           </Flex>
           <Text textDecoration="underline">Instructions</Text>
           <Text>{props?.intructions}</Text>
