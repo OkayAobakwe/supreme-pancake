@@ -18,18 +18,10 @@ const Recipe = ({}) => {
     "instructions": "",
     "measures": [] as any
   })
-  const ingredientsArr = (obj: {""}) => {
+  const fixArr = (obj: {""}, keyWord: string) => {
     var r = []
     for( var key in obj){
-      if(key.includes("strIngredient") && obj[key] !== "" && obj[key] !== null)
-        r.push(obj[key])
-    }
-    return r
-  }
-  const measuresArr = (obj: {""}) => {
-    var r = []
-    for( var key in obj){
-      if(key.includes("strMeasure") && obj[key] !== "" && obj[key] !== null)
+      if(key.includes(keyWord) && obj[key] !== "" && obj[key] !== null)
         r.push(obj[key])
     }
     return r
@@ -43,13 +35,13 @@ const Recipe = ({}) => {
           thumbnail: res?.data?.meals[0]?.strMealThumb as string,
           category: res?.data?.meals[0]?.strCategory,
           instructions: res?.data?.meals[0]?.strInstructions,
-          ingredients: ingredientsArr(res?.data?.meals[0]),
-          measures: measuresArr(res?.data?.meals[0])
+          ingredients: fixArr(res?.data?.meals[0], "strIngredient"),
+          measures: fixArr(res?.data?.meals[0], "strMeasure")
         })
       })
       .catch((err) => console.log("err", err))
   }, [])
-  console.log("state", state)
+  
   return(
     <>
       <Navbar />
